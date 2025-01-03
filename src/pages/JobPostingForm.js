@@ -360,13 +360,14 @@ const JobPostingForm = () => {
           </Row>
 
           {/* Submit Button */}
-          <Row className="mt-4">
-            <Col className="text-center">
-              <button type="submit" className="btn btn-secondary">
-                Submit Job Posting
-              </button>
-            </Col>
-          </Row>
+          <div className="d-flex justify-content-between">
+            <button type="submit" className="btn btn-secondary btn-sm">
+              Submit
+            </button>
+            <button type="button" className="btn btn-secondary btn-sm">
+              Prev Submited Form
+            </button>
+          </div>
         </Form>
       </div>
     </Container>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Form, Row, Col, Container, InputGroup } from "react-bootstrap";
+import { Form, Row, Col, Container, InputGroup, Modal, Button } from "react-bootstrap";
 import { FaUser, FaEnvelope, FaPhone, FaBuilding, FaBriefcase, FaMapMarkedAlt } from "react-icons/fa";
+import ShowClientForm from '../model/ShowClientForm';  // Adjust this import as per your actual path
 
 const ClientForm = () => {
   // Define local state for the form data
@@ -12,6 +13,9 @@ const ClientForm = () => {
     companyName: "",
     address: "",
   });
+
+  // State for controlling modal visibility
+  const [showModal, setShowModal] = useState(false);
 
   // Handle changes in the form fields
   const handleClientChange = (e) => {
@@ -27,6 +31,10 @@ const ClientForm = () => {
     e.preventDefault();
     console.log("Form data submitted:", clientData);
   };
+
+  // Toggle modal visibility
+  const handleShowClientForm = () => setShowModal(true);
+  const handleCloseModal = () => setShowModal(false);
 
   return (
     <Container className="my-5">
@@ -145,13 +153,35 @@ const ClientForm = () => {
           </Row>
 
           {/* Submit Button */}
-          <div className="d-flex justify-content-center">
+          <div className="d-flex justify-content-between">
             <button type="submit" className="btn btn-secondary btn-sm">
               Submit
+            </button>
+            <button
+              type="button"
+              className="btn btn-secondary btn-sm"
+              onClick={handleShowClientForm}  // Show the modal when clicked
+            >
+              Show Prev Submited ClientForm
             </button>
           </div>
         </Form>
       </div>
+
+      {/* Modal to display the ShowClientForm */}
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Previous Submitted Client Form</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <ShowClientForm />  {/* Displaying the ShowClientForm component inside the modal */}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 };

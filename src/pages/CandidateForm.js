@@ -335,13 +335,15 @@ const CandidateForm = () => {
         
 
           {/* Submit Button */}
-          <Row className="mb-3 d-flex justify-content-center">
-            <Col md={4}>
-              <Button variant="secondary" type="submit" block>
-                Submit Application
+          
+            <div className="mb-3 d-flex justify-content-between">
+            <Button variant="secondary" type="submit" block>
+                Submit
               </Button>
-            </Col>
-          </Row>
+            <Button variant="secondary" type="submit" block>
+                Show Prev Submited
+              </Button>
+            </div>
         </Form>
       </div>
     </Container>

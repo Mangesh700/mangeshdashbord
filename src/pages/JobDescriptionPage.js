@@ -391,6 +391,9 @@ const JobDescriptionPage = () => {
             <button type="submit" className="btn btn-secondary btn-sm">
               Submit Job Vacancy
             </button>
+            <button type="button" className="btn btn-outline-secondary btn-sm">
+              Show Prev Submit Job Vacancy
+            </button>
           </div>
         </div>
       </form>

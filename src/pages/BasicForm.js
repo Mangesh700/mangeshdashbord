@@ -278,9 +278,15 @@ const BasicForm = () => {
           </Row>
 
           {/* Submit Button */}
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
+          <div className="d-flex justify-content-between">
+            <button type="submit" className="btn btn-secondary btn-sm">
+              Submit
+            </button>
+            <button type="button" className="btn btn-secondary btn-sm">
+              Show Prev Submited Form
+            </button>
+          </div>
+          
         </Form>
       </div>
     </Container>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaUser, FaEnvelope, FaPhone, FaMapMarkerAlt, FaBuilding } from "react-icons/fa";
 import "bootstrap/dist/css/bootstrap.min.css";
+import ShowFranchiseForm from "../model/ShowFranchiseForm";
 
 const FranchiseForm = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +14,8 @@ const FranchiseForm = () => {
     streetAddress: "",
   });
 
+  const [showModal, setShowModal] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -24,10 +27,14 @@ const FranchiseForm = () => {
     alert("Form submitted successfully!");
   };
 
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
+
   return (
     <div className="container mt-5">
       <form className="form-container shadow-lg p-4 rounded" onSubmit={handleSubmit}>
-      <h2 className="text-center mb-4">Franchise Form</h2>
+        <h2 className="text-center mb-4">Franchise Form</h2>
         <div className="row g-3">
           {/* Name */}
           <div className="col-md-4">
@@ -183,18 +190,46 @@ const FranchiseForm = () => {
             </div>
           </div>
         </div>
-
-        {/* Submit Button */}
+        {/* Submit and Show Previous Button */}
         <div className="row mt-4">
-          <div className="col-12 text-center">
-            <button type="submit" className="btn btn-sm btn-secondary">
+          <div className="d-flex justify-content-between">
+            <button type="submit" className="btn btn-sm btn-secondary me-2">
               Submit
+            </button>
+            <button
+              type="button"
+              className="btn btn-sm btn-secondary"
+              onClick={toggleModal}
+            >
+              Show Prev FranchiseForm
             </button>
           </div>
         </div>
       </form>
+
+      {/* Modal Popup */}
+      {showModal && (
+        <div className="modal show d-block" tabIndex="-1" role="dialog">
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Previous Franchise Form</h5>
+                <button
+                  type="button"
+                  className="btn-close"
+                  onClick={toggleModal}
+                ></button>
+              </div>
+              <div className="modal-body">
+                <ShowFranchiseForm data={formData} />
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
 export default FranchiseForm;
+
